@@ -1,0 +1,215 @@
+- Class: meta
+  Course: Estadistica y Programacion
+  Lesson: Tendencia Central
+  Author: Carlos Zelada
+  Type: Standard
+  Organization: Universidad Francisco Marroquin
+  Version: 1.0.0
+
+- Class: text
+  Output: Hoy, te ensenieare lo basico sobre analisis de data. Probablemente lo
+        mejor seria que iniciaramos definiendo la palabra DATA.
+
+- Class: text
+  Output: Deacuerdo a Wikipedia, "La data es una representacion simbolica 
+        de un atributo o variable cuantitativa o cualitativa, que pertenecen a un conjunto de items"
+
+
+- Class: text
+  Output: El "conjunto de items" que nos interesa estudiar le llamaremos POBLACION.
+        El analisis de Data usalmente involucra estudiar un subconjunto de esta
+        poblacion que le llamaremos MUESTRA.
+        
+- Class: figure
+  Output: Aqui hay un diagrama enseniando la relacion entre poblacion y muestra.
+  Figure: mod1_pop_vs_samp.R
+  FigureType: new
+
+- Class: text
+  Output: El analisis de datos deberia siempre inciciar con una pregunta especifica
+        de interes. Por ejemplo, podriamos preguntas "Que porcentaje de la poblacion
+        viviendo en Guatemala tienen una altura de 1.75 metros?" 
+
+- Class: text
+  Output: Aqui, nuestra poclacion de interes son todas las personas que viven en guatemala.
+        Como es impractico medir la altura de 15.9 millones de guatemaltecos, podriamos en
+        su lugar escoger aleatoriamente a 100 personas para medir sus altura. Lo que
+        esperariamos en que nuestra muestra de 100 sea REPRESENTATIVA de la poblacion
+        entera de Guatemala.
+
+- Class: mult_question
+  Output: 'Examinemos rapidamente tu entendiemiento sobre el concepto de REPRESENTATIVO.
+        Si estuvieras interesado en estudiar la salud de hombre que viven en Guatemala, en
+        el rango de 18-25 anios, que muestra seria representativa de la poblacion de interes:
+        Una muestra the 50 hombres que viven ne una casa de retiro, o una muestra de 
+        estudiantes de una universidad local?'
+  AnswerChoices: Hombre viviendo cerca de la casa de retiro; Estudiantes universitarios
+  CorrectAnswer: Estudiantes universitarios
+  AnswerTests: omnitest(correctVal='Estudiantes universitarios')
+  Hint: Como la poblacion de interese son hombre entre los 18-25 anios que viven en 
+        Guatemala, cual de las dos muestra mejor representa esta poblacion?
+  
+
+- Class: video
+  Output: Quisieras ver un video sobre esto ahora? (El video es en ingles)
+  VideoLink: http://youtu.be/sRArT81TVEM
+
+- Class: text
+  Output: El proposito de analizar una muestra es para sacar conclusiones sobre
+        la poblacion de la cual se hizo la muestra. Esto es llamado INFERENCIA y es
+        la meta principal de la ESTADISTICA INFERENCIAL.
+
+- Class: text
+  Output: Para poder hacer inferencia sobre la problacion, primero necesitamos describor
+        la muestra. Esta el la meta principal de la ESTADISTICA DESCRIPTIVA.
+
+- Class: text
+  Output: Si quisieramos describir una muestra con un solo numero, cual seria la mejor
+        forma de hacerlo? Un buen inicio es encontrando el centro, la mitas o el elemento
+        mas comun de nuestra data. Lo estadistas le llamana a esto TENDENCIA CENTRAL.
+
+- Class: text
+  Output: Hay tres metodos diferentes para encontrar este numero y la aplicabilidad de
+        cada metodo depende de la situacion. Esos tres metodos son llamados MEDIA, MEDIANA,
+        y MODA.
+
+- Class: video
+  Output: Te gustaria ver un video sobre media, mediana y moda?
+  VideoLink: http://youtu.be/HBccoegbvC4
+
+- Class: mult_question
+  Output: La media, media y moda son una medida de ____________.
+  AnswerChoices: variacion; significancia; desviacion; tendencia central
+  CorrectAnswer: tendencia central
+  AnswerTests: omnitest(correctVal='tendencia central') 
+  Hint: Este es un termino elegante para "la mitad" de los datos. 
+
+- Class: mult_question
+  Output: Cuales de los siguientes terminos son de mucha importacia cuando se quiere
+        describir la tendencia central de un conjunto de datos?
+  AnswerChoices: media, moda, rango ; estadistica, poblacion, moda; poblacion, muestra,
+        representativo;moda, mediana, media
+  CorrectAnswer: moda, mediana, media
+  AnswerTests: omnitest(correctVal='moda, mediana, media') 
+  Hint: Son tre metodos diferente que se mencionaron anteriormente, que se usan para
+        determinal el centro de un conjunto de datos.
+
+- Class: cmd_question
+  Output: Para ilustrar estos conceptos, exploraremos un conjunto de datos reales del
+        paquete 'openintro' de R, el cual ya lo cargue a la consola. Escribe 'cars' y
+        presiona Enter para ver el conjunto de datos con el que estaremos trabajando.
+  CorrectAnswer: cars
+  AnswerTests: equivalent=cars
+  Hint: Escribe 'cars' en la consola y presiona Enter. No uses apostrofes, espacios, o
+        mayusculas.
+
+- Class: text
+  Output: 'Puede notar que las filas esta numeradas del 1 al 54, cada fila representando
+        exactamente a un solo caro en el conjunto de datos. Para cada carro, se conocen las
+        siguiente variables ''type''  (small, midsize, large), ''price'' (USD), ''mpgCity'' (city
+        miles per gallon), ''driveTrain'' (4WD, front, rear), ''passengers'' (total capacity),
+        and ''weight'' (lbs).'
+
+- Class: text
+  Output: Nos enfocaremos en 'mpgCity', que son las millas por galon, para esta leccion.
+        Por facilidad, extraigamos los valores del conjunto de datos y guardemolo en una nueva
+        variable.
+
+- Class: cmd_question
+  Output: Puedes accesar solo la variable 'mpgCity' del conjunto de datos 'cars' usando
+        la notacion 'ConjuntoDatos$variable'. Pruebalo con el conjuntos de datos 'cars' y la 
+        variable 'mpgCity'.
+  CorrectAnswer: cars$mpgCity
+  AnswerTests: equivalent=cars$mpgCity
+  Hint: Usa la notacion 'ConjuntoDatos$variable'. Recuerda que nuestro conjunto de datos
+        es 'cars' y nuestra variable de interes es 'mpgCity'.
+
+- Class: cmd_question
+  Output: Ahora guarda es contenido de 'cars$mpgCity' en una nueva variable llamada
+        'miMPG'.
+  CorrectAnswer: miMPG <- cars$mpgCity
+  AnswerTests: newcmd=miMPG <- cars$mpgCity
+  Hint: Usa el operador de asignacion para asignar 'cars$mpgCity' a una nueva variable
+        llamada 'miMPG'.
+
+- Class: text
+  Output: La MEDIA ARITMETICA, o simplemente la MEDIA o el PROMEDIO, es la medida mas
+        comun de tendencia central. Para calcular la media de un conjunto de datos,
+        primero se deben de sumar todos los datos y despues dividirlos dentro del 
+        numero total de datos.
+
+- Class: text
+  Output: Sin embargo, cuando hay MUCHOS valores de interes, se hace tedioso calcular
+        a mano la media. Por suerte, R tiene una funcion la cual hace esto por nosotros.
+        La sintaxis para hacer esto es 'mean(variable)'.
+
+- Class: cmd_question
+  Output: Computa la media de la variable 'miMPG'.
+  CorrectAnswer: mean(miMPG)
+  AnswerTests: newcmd=mean(miMPG)
+  Hint: Usa la funcion 'mean', escribe 'mean' seguido por el nombre de la variable
+        dentro de parentesis. No uses ningun espacio.
+
+- Class: text
+  Output: Los valores extremos (el valor Maximo y el valor Minimo) en nuestro conjunto
+        de datos puede influencia enormemente a la media. Por ejemplo, si hubiera un carro
+        dentro de nuestro conjunto de datos que tubiera 200 millas por galon,
+        esto inflaria la media hacia arriba. Esto prodria ser enganioso por que ninguno
+        de los otros carros estan cerca de este millaje.
+
+- Class: text
+  Output: Una alternativa a la media, la cual no es influenciada por valores extremos,
+        es la MEDIANA. La mediana es computada al ordenar todos los values de menor a
+        mayor y despues se selecciona el valor que este en la mitad. Si hay un numero para
+        de valores, entonces hay dos valores en la mitad. En este caso, la MEDIANA es igual
+        a la MEDIA de estos dos valores. No te preocupes si este es algo confuso. Se volvera
+        claro con la practica.
+
+- Class: cmd_question
+  Output: R tiene tambien una funcion para calcuar la mediana de un conjuntos de datos
+        esto se logra escribiendo 'median(variable)'. Encuentra la mediana de la variable
+        'miMPG' ahora.
+  CorrectAnswer: median(miMPG)
+  AnswerTests: newcmd=median(miMPG)
+  Hint: Usa la funcion 'median' escribiendo 'median' sequido del nombre de la variable
+        entre parentesis. No uses espacios.
+
+- Class: text
+  Output: Finalmente, tambien podria ser que estemos interesados en encontrar el valor
+        que mas se repite en el conjunto de datos. En otras palabras, cual es el valor
+        mas comun en nuestro conjunto de datos?
+        Esto es llamada MODA y la encontramos contando el numero de veces que se repite 
+        cada dato y se selecciona el que se repita mas veces. 
+
+
+- Class: cmd_question
+  Output: Usa la funcion 'table' para ver cuantas veces se repite cada un de los 
+        datos de nuestra variable 'miMPG'. La sintaxis de esta funcion es igual 
+        a la sintaxis de las otras funciones que hemos usado.
+  CorrectAnswer: table(miMPG)
+  AnswerTests: newcmd=table(miMPG)
+  Hint: Escribe 'table' seguido del nombre de la variable dentro de parentesis
+        recuerda que debes dejar espacios.
+
+- Class: exact_question
+  Output: Mira la tabla para la variable 'miMPG' que esta arriba. La primera fila
+        tiene los valores de que toma la variable y la segunda fila el numero de veces
+        que se repite ese valor en el conjunto de datos. Como la MODA es el valor de
+        la variable que aparece con mas frecuencia, cual es la moda de 'miMPG'?
+  CorrectAnswer: '19'
+  AnswerTests: exact=19
+  Hint: Recuerda que la moda es el valor que mas se repite en nuestro conjunto de 
+        datos.
+- Class: text
+  Output: Uno esperaria que R tuviera un funcion para calcular la moda, pero en el caso
+        de la moda no hay una funcion que directamente nos de este resultado. Mas adelante
+        crearemos nosotros nuestra propia funcion que calcule la moda de un conjunto de 
+        datos.
+
+- Class: text
+  Output: 'Felicitaciones! has completado la segunda leccion. Esta fue una introduccion
+        a los conceptos basicos relacionados con la data y el analisis de datos.
+        especificamente aprendimos tres medidas de tendencia central: media, mediana y
+        moda. Tambien ahora sabes como calcularlo usando R.'
+  
+
